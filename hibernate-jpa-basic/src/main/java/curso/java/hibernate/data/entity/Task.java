@@ -18,6 +18,8 @@ public class Task implements Serializable {
     private String taskDescription;
     @Column
     private Integer employeeId;
+    @Column
+    private Integer id_Scope;
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -49,6 +51,14 @@ public class Task implements Serializable {
 
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
+    }
+
+    public Integer getId_Scope() {
+        return id_Scope;
+    }
+
+    public void setId_Scope(Integer id_Scope) {
+        this.id_Scope = id_Scope;
     }
 
     @Override
