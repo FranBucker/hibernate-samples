@@ -52,19 +52,16 @@ public class HibernateExampleApp implements CommandLineRunner {
     emp2.setFirstName("Bart");
     emp2.setLastName("Simpson");
 
-    emp2.setTasks(getTasks(scope1.getId()));
+    emp2.setTasks(getTasks(scope1));
 
     repository.save(emp2);
-    scope1.setTasks(getTasks(scope1.getId()));
-    repositoryScope.save(scope1);
 
 
 
     repository.findAll().forEach(System.out::println);
-    repositoryScope.findAll().forEach(System.out::println);
   }
 
-  private Set<Task> getTasks(int Id_Scope) {
+  private Set<Task> getTasks(Scope scope1) {
     Set<Task> tasks = new HashSet<>();
 
     Optional<Task> existingTask1 = repositoryTask.findByTaskName("report generation");
@@ -74,7 +71,7 @@ public class HibernateExampleApp implements CommandLineRunner {
       Task task1 = new Task();
       task1.setTaskName("report generation");
       task1.setTaskDescription("Daily report generation");
-      task1.setId_Scope(Id_Scope);
+      task1.setScope(scope1);
       tasks.add(task1);
     } else {
       tasks.add(existingTask1.get());
@@ -84,7 +81,7 @@ public class HibernateExampleApp implements CommandLineRunner {
       Task task2 = new Task();
       task2.setTaskName("view generation");
       task2.setTaskDescription("Daily view generation");
-      task2.setId_Scope(Id_Scope);
+      task2.setScope(scope1);
       tasks.add(task2);
     } else {
       tasks.add(existingTask2.get());

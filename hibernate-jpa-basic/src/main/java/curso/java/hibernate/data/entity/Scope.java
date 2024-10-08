@@ -26,10 +26,6 @@ public class Scope implements Serializable {
     private String description;
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_Scope")
-    private Set<Task> tasks;
-
     public Integer getId() {
         return id;
     }
@@ -54,20 +50,12 @@ public class Scope implements Serializable {
         this.description = description;
     }
 
-    public Set<Task> getTasks() {
-        return tasks;
-    }
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
-
     @Override
     public String toString() {
         return "Scope{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", tasks=" + tasks +
                 '}';
     }
 }
